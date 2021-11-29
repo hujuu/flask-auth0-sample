@@ -1,0 +1,6 @@
+Flask==1.1.4
+gunicorn==19.10.0
+python-dotenv
+requests
+authlib
+six
