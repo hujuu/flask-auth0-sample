@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row justify-content-between">
+    <div class="col-4">
+        <a href="{{ url_for('projects') }}">
+            < プロジェクト一覧に戻る
+        </a>
+    </div>
+    <div class="col-4">
+        <div class="btn-group">
+            <a href="{{ url_for('edit_project', project_id=id) }}" class="btn btn-secondary">編集</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <h2>プロジェクト概要</h2>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">販売形式</th>
+            <td>{{ doc.sales_format }}</td>
+        </tr>
+        <tr>
+            <th scope="row">券種</th>
+            <td>{{ doc.type }}</td>
+        </tr>
+        <tr>
+            <th scope="row">概要</th>
+            <td>{{ doc.summary }}</td>
+        </tr>
+        <tr>
+            <th scope="row">価格</th>
+            <td>{{ doc.price }}</td>
+        </tr>
+        <tr>
+            <th scope="row">リリース日</th>
+            <td>{{ doc.start_at.strftime('%Y-%m-%d %H:%M') }}</td>
+        </tr>
+        <tr>
+            <th scope="row">告知開始日</th>
+            <td>{{ doc.press_release.strftime('%Y-%m-%d %H:%M') }}</td>
+        </tr>
+        <tr>
+            <th scope="row">販売終了日</th>
+            <td>{{ doc.end_at.strftime('%Y-%m-%d %H:%M') }}</td>
+        </tr>
+        <tr>
+            <th scope="row">有効期限</th>
+            <td>{{ doc.expiration }}</td>
+        </tr>
+        <tr>
+            <th scope="row">特記事項</th>
+            <td>{{ doc.remarks }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<hr>
+<div class="row">
+    <h2>ご確認をいただきたい書類一覧</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">書類名</th>
+            <th scope="col">リンク</th>
+            <th scope="col">ご返送要否</th>
+            <th scope="col">ご返送期日</th>
+            <th scope="col">ステータス</th>
+            <th scope="col">ダウンロード回数</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for sub_doc in sub_docs %}
+        <tr>
+            <th scope="row">{{ sub_doc.to_dict().name }}</th>
+            <td>
+                <a href="{{ url_for('download_file', project_id=id, sub_doc_id=sub_doc.id, filename=sub_doc.to_dict().file_name) }}" class="card-link">{{ sub_doc.to_dict().file_name }}</a>
+            </td>
+            <td>要ご返送</td>
+            <td>11月17日（水）</td>
+            <td>----</td>
+            <td>{{ sub_doc.to_dict().count }}</td>
+        </tr>
+        {% else %}
+            投稿がありません
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<hr>
+<div class="row">
+    <h2>最新スケジュール</h2>
+    <p>最新のスケジュールは常に以下をご参照ください</p>
+    <img src="https://image.docbase.io/uploads/3f77f0fa-9868-4ff4-af83-c8d7fe656aac-1920x1036r.png"/>
+</div>
+<hr>
+<div class="row">
+    <h2>販売計画</h2>
+    <p>告知予定媒体</p>
+    <ul>
+        <li>HP</li>
+        <li>各種SNS</li>
+        <li>店頭（卓上QRコード）</li>
+        <li>物販のクーポンの裏側に印刷</li>
+    </ul>
+</div>
+<hr>
+<div class="row">
+    <h2>経理関連</h2>
+    <p>eGiftシステムと別紙での支払通知書発行：OK</p>
+    <p>支払通知書送付形式：PDFメール添付</p>
+</div>
+<hr>
+<div class="row">
+    <h2>プレスリリース</h2>
+    <ul>
+        <li>貴社からの発信：ー</li>
+        <li>弊社からの発信：ー</li>
+    </ul>
+</div>
+<hr>
+<div class="row">
+    <h2>その他</h2>
+    <ul>
+        <li>法人販売：なし</li>
+        <li>外部販売：なし</li>
+    </ul>
+</div>
+{% endblock %}
