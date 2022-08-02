@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="row justify-content-between">
+        <div class="col-4">
+            <h2>テナント</h2>
+        </div>
+        <div class="col-4">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="" class="btn btn-primary text-nowrap" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="feather feather-plus">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span style="vertical-align: 2px;">プロジェクトを追加</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <p>{{ doc }}</p>
+<p>{{ list }}</p>
+{% endblock %}
