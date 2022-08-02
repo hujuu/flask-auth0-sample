@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="row">
+        <h2>プロジェクト新規追加</h2>
+    </div>
+    <form action="{{ url_for('project.add_projects') }}" method=post class=add-entry>
+        <div class="mb-3">
+            <label for="InputTitle">タイトル</label>
+            <input type="text" class="form-control" id="InputTitle" name=title>
+        </div>
+        <button type="submit" class="btn btn-primary">作成</button>
+    </form>
+{% endblock %}
