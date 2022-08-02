@@ -1,0 +1,204 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row justify-content-between">
+    <div class="col-4">
+        <a href="{{ url_for('projects') }}">
+            < プロジェクトに戻る
+        </a>
+    </div>
+    <div class="col-4">
+        <div class="btn-group">
+            <form action="" method="get">
+                <button type="submit" class="btn btn-secondary">編集</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row g-3">
+    <h2>編集画面</h2>
+</div>
+<div class="row">
+    <form action="{{ url_for('update_project', project_id=id) }}"
+          method=post
+          class=add-entry>
+        <h3>プロジェクト概要</h3>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">販売形式</th>
+                <td><input type="text" class="form-control" id="InputSalesFormat" name=sales_format
+                           value="{{ doc.sales_format }}"></td>
+            </tr>
+            <tr>
+                <th scope="row">券種</th>
+                <td><input type="text" class="form-control" id="InputType" name=type
+                           value="{{ doc.type }}"></td>
+            </tr>
+            <tr>
+                <th scope="row">概要</th>
+                <td><input type="text" class="form-control" id="InputSummary" name=summary
+                           value="{{ doc.summary }}"></td>
+            </tr>
+            <tr>
+                <th scope="row">価格</th>
+                <td><input type="text" class="form-control" id="InputPrice" name=price
+                           value="{{ doc.price }}"></td>
+            </tr>
+            <tr>
+                <th scope="row">リリース日</th>
+                <td><input type="text" class="form-control" id="InputStartAt" name=start_at
+                           value="{{ doc.start_at.strftime('%Y-%m-%d %H:%M') }}"></td>
+            </tr>
+            <tr>
+                <th scope="row">告知開始日</th>
+                <td><input type="text" class="form-control" id="InputPressRelease" name=press_release
+                           value="{{ doc.press_release.strftime('%Y-%m-%d %H:%M') }}"></td>
+            </tr>
+            <tr>
+                <th scope="row">販売終了日</th>
+                <td><input type="text" class="form-control" id="InputEndAt" name=end_at
+                           value="{{ doc.end_at.strftime('%Y-%m-%d %H:%M') }}"></td>
+            </tr>
+            <tr>
+                <th scope="row">有効期限</th>
+                <td><input type="text" class="form-control" id="InputExpiration" name=expiration
+                           value="{{ doc.expiration }}"></td>
+            </tr>
+            <tr>
+                <th scope="row">特記事項</th>
+                <td><input type="text" class="form-control" id="InputRemarks" name=remarks
+                           value="{{ doc.remarks }}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">更新</button>
+    </form>
+</div>
+<hr>
+<div class="row">
+    <h2>ご確認をいただきたい書類一覧</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">書類名</th>
+            <th scope="col">リンク</th>
+            <th scope="col">ご返送要否</th>
+            <th scope="col">ご返送期日</th>
+            <th scope="col">ステータス</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">仕様一覧</th>
+            <td>
+                <a href="{{ url_for('get', filename='Sphinx_vol2.pdf') }}" class="card-link">DL</a>
+            </td>
+            <td>要ご返送</td>
+            <td>11月17日（水）</td>
+            <td>----</td>
+        </tr>
+        <tr>
+            <th scope="row">クリエイティブシート</th>
+            <td>
+                <a href="{{ url_for('get', filename='Sphinx_vol2.pdf') }}" class="card-link">DL</a>
+            </td>
+            <td>要ご返送</td>
+            <td>11月17日（水）</td>
+            <td>----</td>
+        </tr>
+        <tr>
+            <th scope="row">その他確認シート</th>
+            <td>
+                <a href="{{ url_for('get', filename='Sphinx_vol2.pdf') }}" class="card-link">DL</a>
+            </td>
+            <td>要ご返送</td>
+            <td>11月17日（水）</td>
+            <td>----</td>
+        </tr>
+        <tr>
+            <th scope="row">gLP利用契約書</th>
+            <td>
+                <a href="{{ url_for('get', filename='Sphinx_vol2.pdf') }}" class="card-link">DL</a>
+            </td>
+            <td>要ご返送</td>
+            <td>11月17日（水）</td>
+            <td>----</td>
+        </tr>
+        <tr>
+            <th scope="row">口座情報確認シート</th>
+            <td>
+                <a href="{{ url_for('get', filename='Sphinx_vol2.pdf') }}" class="card-link">DL</a>
+            </td>
+            <td>要ご返送</td>
+            <td>11月17日（水）</td>
+            <td>----</td>
+        </tr>
+        <tr>
+            <th scope="row">Quicksight登録マニュアル</th>
+            <td>
+                <a href="{{ url_for('get', filename='Sphinx_vol2.pdf') }}" class="card-link">DL</a>
+            </td>
+            <td>----</td>
+            <td>----</td>
+            <td>----</td>
+        </tr>
+        <tr>
+            <th scope="row">Plus Pass ID 規約（参考）</th>
+            <td>
+                <a href="{{ url_for('get', filename='Sphinx_vol2.pdf') }}" class="card-link">DL</a>
+            </td>
+            <td>----</td>
+            <td>----</td>
+            <td>----</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+    <h2>最新スケジュール</h2>
+    <p>最新のスケジュールは常に以下をご参照ください</p>
+    <img src="https://image.docbase.io/uploads/3f77f0fa-9868-4ff4-af83-c8d7fe656aac-1920x1036r.png"/>
+</div>
+
+<div class="row">
+    <h2>販売計画</h2>
+    <p>告知予定媒体</p>
+    <ul>
+        <li>・HP</li>
+        <li>・各種SNS</li>
+        <li>・店頭（卓上QRコード）</li>
+        <li>・物販のクーポンの裏側に印刷</li>
+    </ul>
+</div>
+
+<div class="row">
+    <h2>経理関連</h2>
+    <p>eGiftシステムと別紙での支払通知書発行：OK</p>
+    <p>支払通知書送付形式：PDFメール添付</p>
+</div>
+
+<div class="row">
+    <h2>プレスリリース</h2>
+    <ul>
+        <li>貴社からの発信：ー</li>
+        <li>弊社からの発信：ー</li>
+    </ul>
+</div>
+
+<div class="row">
+    <h2>その他</h2>
+    <ul>
+        <li>法人販売：なし</li>
+        <li>外部販売：なし</li>
+    </ul>
+</div>
+
+{% endblock %}
+
